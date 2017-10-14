@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+# IMPROVEMENT ON START.PY PROGRAM
+# 
+# This program includes GET / POST methods
+# for a user to submit X+Y sum of two integers.
+
 # import flask , url_forwarding, request modules
 from flask import Flask, url_for, request
 # create the app from the current file
@@ -18,9 +23,33 @@ app = Flask(__name__) # generate flask app from the name of the current file
 @app.route("/", methods=["GET", "POST"])
 def index():
 	if request.method == "POST":
-		return "Checking details..."
+		# return the sum if they made a request
+		z = int(request.form["x"]) + int(request.form["y"])
+		html = """
+<form method="POST" action="">
+	<d1>
+		<dt><input type="textfield" name="x"></input>
+		+
+		<input type ="textfield" name="y"></input>
+		= {}
+		<dt><input type="submit"></input>
+	</d1>
+</form>
+""".format(z)
+		return html
 	else:
-		return "Index"
+		html = """
+<form method="POST" action="">
+	<d1>
+		<dt><input type="textfield" name="x"></input>
+		+
+		<input type ="textfield" name="y"></input>
+		= ?
+		<dt><input type="submit"></input>
+	</d1>
+</form>
+"""
+		return html
 
 @app.route("/hello")
 def hello():

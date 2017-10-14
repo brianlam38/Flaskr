@@ -27,9 +27,10 @@ def hello():
 	return "Hello world!"
 
 # user with username field -> get a specific username supplied by the user in the URL and return the username
+@app.route("/user") # if no arg supplied, user will be set to None
 @app.route("/user/<username>")
-def profile(username):
-	return "Hello {}".format(username)
+def profile(username=None):
+	return render_template("simple_hello.html", name=username)
 
 @app.route("/debug")
 def debug():
