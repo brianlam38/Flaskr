@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block main %}
+{% for value in data %}
+	<a href="{{ value }}">{{ value }}</a><br>
+{% endfor %}
+{% endblock %}

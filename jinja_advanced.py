@@ -9,6 +9,12 @@
 from flask import Flask, url_for, request, render_template, redirect
 app = Flask(__name__)
 
+# JINJA ADVANCED EXAMPLE
+#
+# base.html will be our default block. (see templates/base.html)
+# "All our pages will have the title "Hello from Flask", with a main block after the title"
+# This is useful as we can just specify all blocks of content in base.html if needed across all pages
+
 # base index
 # get / post methods
 # instead of sending .html text, we are doing it via. render_template() function
