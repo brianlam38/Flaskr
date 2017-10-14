@@ -8,9 +8,24 @@ app = Flask(__name__) # generate flask app from the name of the current file
 # Flask will take in any web requests and process them through the functions that we write
 
 # for any URL's stated by the path, call the following function
-@app.route("/")
-def hello_world():
+# NOTE: The hello_world() fn specifies what the page returns.
+#		The @app.route() decator will let us change what the function does
+#		A decator is a fn that takes in a fn and modifies how it behaves + returns it to be used like a normal fn
+#		In this case, we are decorating the hello_world() fn to take in requests to the normal index page.
+
+# base level
+@app.route("\n")
+def index():
+	rturn "Index"
+
+@app.route("/hello")
+def hello():
 	return "Hello world!"
+
+# user with username field -> get a specific username supplied by the user in the URL and return the username
+@app.route("/user/<username>")
+def profile(username):
+	return "Hello {}".format(username)
 
 # if this program is being directly run
 if __name__ == "__main__":
