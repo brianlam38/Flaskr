@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-# import flask module
-from flask import flask
+# import flask module, url_forwarding
+from flask import Flask, url_for
 # create the app from the current file
 app = Flask(__name__) # generate flask app from the name of the current file
 
@@ -14,9 +14,9 @@ app = Flask(__name__) # generate flask app from the name of the current file
 #		In this case, we are decorating the hello_world() fn to take in requests to the normal index page.
 
 # base level
-@app.route("\n")
+@app.route("/")
 def index():
-	rturn "Index"
+	return "Index"
 
 @app.route("/hello")
 def hello():
@@ -26,6 +26,27 @@ def hello():
 @app.route("/user/<username>")
 def profile(username):
 	return "Hello {}".format(username)
+
+@app.route("/debug")
+def debug():
+	# very long format html
+	html = """
+		<a href="{0}">{0}</a><br>
+		<a href="{1}">{1}</a><br>
+		<a href="{2}">{2}</a><br>
+		<a href="{3}">{3}</a><br>
+	""".format(
+			# url_for() will give you back a link relative to where you currently are
+			# useful if you are running a site that is dynamic to where its supposed to be
+			# url_for() takes arg of a function name
+			url_for("index"),
+			url_for("hello"),
+			# specify hello var = test
+			url_for("hello", variable="test"),
+			# specify username var = Quinn
+			url_for("profile", username="Quinn")
+			)
+	return html
 
 # if this program is being directly run
 if __name__ == "__main__":
