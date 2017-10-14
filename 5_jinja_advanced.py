@@ -29,7 +29,7 @@ def index():
 		return render_template("new_form.html", answer=z)
 	else:
 		# otherwise return a blank form
-		return render_template("base.html", answer=None)
+		return render_template("new_form.html", answer=None)
 
 @app.route("/hello")
 def hello():
