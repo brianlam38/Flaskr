@@ -45,8 +45,10 @@ def hi():
 @app.route("/user")
 @app.route("/user/<username>")
 def profile(username=None):
-	#users = {"Quinn": {"name": "Quinn", "degree": "Maths", "colour": "white"}}
-	return render_template("hello.html", name=username)
+	# user dictionary with 1 x "Quinn" user entry
+	users = {"Quinn": {"name": "Quinn", "degree": "Maths", "colour": "white"}}
+	# passing specific user "Quinn" to hello.html
+	return render_template("hello.html", user=users.get(username, None))
 
 @app.route("/debug")
 def debug():

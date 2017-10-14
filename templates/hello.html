@@ -1,9 +1,9 @@
-For some reason, jinja doesn't work with these in-line comments, so here is a duplicate file
-to the original "simple_hello.html" file
-
-<!-- Simple html file for use with Flask / Jinja app -->
-
 <!doctype html>
 <title>Hello from Flask</title>
-<!-- variable name inside {{ }} will be replaced by the user specified username -->
-<h1>Hello {{ name }}!</h1>
+{% if user %}
+	<h1>Hello {{ user.name }}!</h1>
+	<h2>{{ user.degree }}</h2>
+	<h3>{{ user.colour }}</h3>
+{% else %}
+	<h1>Hello World!</h1>
+{% endif %}
