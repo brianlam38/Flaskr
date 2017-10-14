@@ -1,0 +1,14 @@
+<!doctype html>
+<form method="POST" action="{{ url_for('index') }}">
+	<d1>
+		<dt><input type="textfield" name="x"></input>
+		+
+		<input type="textfield" name="y"></input>
+		{% if answer %}
+		= {{ answer}}
+		{% else %}
+		= ?
+		{% endif %}
+		<dt><input type="submit"></input>
+	</dt>
+</form>

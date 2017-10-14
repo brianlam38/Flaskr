@@ -1,6 +1,11 @@
 #!/usr/bin/python
 
-# import flask , url_forwarding, request, render_template modules
+# IMPROVEMENT ON START.PY PROGRAM
+# 
+# This program includes GET / POST methods
+# for a user to submit X+Y sum of two integers.
+
+# import flask , url_forwarding, request modules
 from flask import Flask, url_for, request, render_template
 # create the app from the current file
 app = Flask(__name__) # generate flask app from the name of the current file
@@ -15,24 +20,29 @@ app = Flask(__name__) # generate flask app from the name of the current file
 
 # base index
 # get / post methods
+# instead of sending .html text, we are doing it via. render_template() function
 @app.route("/", methods=["GET", "POST"])
 def index():
 	if request.method == "POST":
-		return "Checking details..."
+		# return the sum if they made a request
+		try:
+			z = int(request.form["x"]) + int(request.form["y"])
+		except:
+			z = 0
+		return render_template("form.html", answer=z)
 	else:
-		return "Index"
+		# otherwise return a blank form
+		return render_template("form.html", answer=None)
 
 @app.route("/hello")
 def hello():
 	return "Hello world!"
 
 # user with username field -> get a specific username supplied by the user in the URL and return the username
-# new route to add no user
-@app.route("/user") # if no arg supplied, user will be set to None
+@app.route("/user")
 @app.route("/user/<username>")
 def profile(username=None):
-	# template rendered should be in /templates
-	return render_template("simple_hello.html", name=username)
+	return render_template("hello.html", name=username)
 
 @app.route("/debug")
 def debug():
